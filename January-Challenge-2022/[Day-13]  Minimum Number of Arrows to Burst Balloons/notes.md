@@ -1,0 +1,1 @@
+Great question around the concept of interval scheduling. Just think along the lines of what you need to define the boundary for a single arrow. Once you have that figured out, move on to the next arrow and so on.
