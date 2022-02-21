@@ -6,7 +6,7 @@ class SnakeGame:
         self.height = height
         self.food, self.f_idx = food, 0
         self.movements = {'R': (0, 1), 'D': (1, 0), 'U': (-1, 0), 'L': (0, -1)}
-        self.snake_parts = [(0, 0)]
+        self.snake_parts = deque([(0, 0)])
         self.snake_dict = {(0, 0): 1}
         
     def move(self, direction: str) -> int:
@@ -23,13 +23,8 @@ class SnakeGame:
             self.snake_parts.append((r, c))
             self.f_idx += 1
         else:
-            old = self.snake_parts[-1]
-            self.snake_parts[-1] = (r, c)
-            for i in range(len(self.snake_parts) - 2, -1, -1):
-                curr = self.snake_parts[i]
-                self.snake_parts[i] = old
-                old = curr
-            del self.snake_dict[old]
+            self.snake_parts.append((r, c))
+            del self.snake_dict[self.snake_parts.popleft()]
          
         if (r, c) in self.snake_dict:
             return -1
